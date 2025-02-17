@@ -1,0 +1,160 @@
+.\" Bu dosya, oluşturma dizininde man sayfaları oluşturmak için işlenir.
+.TH brave-browser 1 "" "" "KULLANICI KOMUTLARI"
+
+.SH İSİM
+brave-browser \- Brave Tarayıcı
+
+.SH KULLANIM
+.B brave-browser
+[\fISEÇENEK\fR] [\fIYOL\fR|\fIURL\fR]
+
+.SH AÇIKLAMA
+Tarayıcıyı kullanma hakkında yardım almak için Brave Yardım Merkezi'ni ziyaret edin.
+.IP
+<https://support.brave.com/>
+.PP
+Bu man sayfası yalnızca çağırma, ortam değişkenleri ve argümanları açıklar.
+
+.SH SEÇENEKLER
+Brave Web Tarayıcı, geliştiricilerin insiyatifine bağlı olarak eklenen ve kaldırılan yüzlerce belgelenmemiş komut satırı bayrağına sahiptir. Burada, nispeten stabil bayrakları belgeleriz.
+.TP
+\fB\-\-user\-data\-dir\fR=\fIKLASÖR\fR
+Kullanıcı verilerinin (profilinizin) saklandığı dizini belirtir.
+Varsayılan olarak
+.I $HOME/.config/brave-browser .
+Brave Web Tarayıcının ayrı örnekleri, farklı kullanıcı veri dizinleri kullanmalıdır;
+brave-browser’ın tekrarlanan çağrıları, belirli bir kullanıcı veri dizini için mevcut süreci yeniden kullanır.
+
+.TP
+\fB\-\-app\fR=\fIURL\fR
+Belirtilen
+.I URL
+adresini "uygulama modunda" çalıştırır: tarayıcı araç çubukları olmadan.
+
+.TP
+\fB\-\-incognito\fR
+Gizli modda açar.
+
+.TP
+\fB\-\-new-window\fR
+Eğer \fIYOL\fR veya \fIURL\fR belirtilirse, yeni bir pencerede açar.
+
+.TP
+\fB\-\-proxy-server\fR=\fIhost:port\fR
+İstekler için kullanılacak HTTP/SOCKS4/SOCKS5 proxy sunucusunu belirtir. Bu, ortam değişkenlerini veya seçenekler penceresi aracılığıyla seçilen ayarları geçersiz kılar.
+Bir proxy sunucusu aşağıdaki formatta belirtilir:
+
+  [<proxy-scheme>://]<proxy-host>[:<proxy-port>]
+
+Burada <proxy-scheme>, proxy sunucusunun protokolüdür ve şu seçeneklerden biri olabilir:
+
+  "http", "socks", "socks4", "socks5".
+
+Eğer <proxy-scheme> belirtilmezse, varsayılan olarak "http" kabul edilir. Ayrıca "socks", "socks5" ile eşdeğerdir.
+
+Örnekler:
+
+  --proxy-server="foopy:99"
+      Tüm URL'leri yüklemek için "foopy:99" HTTP proxy’sini kullanır.
+
+  --proxy-server="socks://foobar:1080"
+      Tüm URL'leri yüklemek için "foobar:1080" SOCKS v5 proxy’sini kullanır.
+
+  --proxy-server="socks4://foobar:1080"
+      Tüm URL'leri yüklemek için "foobar:1080" SOCKS v4 proxy’sini kullanır.
+
+  --proxy-server="socks5://foobar:66"
+      Tüm URL'leri yüklemek için "foobar:66" SOCKS v5 proxy’sini kullanır.
+
+Farklı URL türleri için ayrı proxy sunucuları belirtmek de mümkündür:
+
+Örnek:
+
+  --proxy-server="https=proxy1:80;http=socks4://baz:1080"
+      https://* URL'leri yüklemek için "proxy1:80" HTTP proxy’sini kullanır.  
+      http://* URL'leri yüklemek için "baz:1080" SOCKS v4 proxy’sini kullanır.
+
+.TP
+\fB\-\-no-proxy-server\fR
+Proxy sunucusunu devre dışı bırakır. Ortam değişkenlerini veya seçenekler penceresi ayarlarını geçersiz kılar.
+
+.TP
+\fB\-\-proxy-auto-detect\fR
+Proxy yapılandırmasını otomatik algılar. Ortam değişkenlerini veya seçenekler penceresi ayarlarını geçersiz kılar.
+
+.TP
+\fB\-\-proxy-pac-url\fR=\fIURL\fR
+Proxy otomatik yapılandırma URL’sini belirtir. Ortam değişkenlerini veya seçenekler penceresi ayarlarını geçersiz kılar.
+
+.TP
+\fB\-\-password-store\fR=<\fIbasic\fR|\fIgnome\fR|\fIkwallet\fR>
+Kullanılacak parola deposunu belirler. Varsayılan olarak, masaüstü ortamına göre otomatik algılanır.  
+\fIbasic\fR, dahili şifrelenmemiş parola deposunu seçer.  
+\fIgnome\fR, Gnome anahtar zincirini seçer.  
+\fIkwallet\fR, KDE’nin KWallet sistemini seçer. (Not: KWallet, KDE dışındaki ortamlarda güvenilir çalışmayabilir.)
+
+.TP
+\fB\-\-version\fR
+Sürüm bilgisini gösterir.
+
+.PP
+GTK+ uygulaması olarak Brave Web Tarayıcı, 
+.BR \-\-display
+gibi GTK+ komut satırı bayraklarını da kabul eder.
+GTK belgeleri için:
+.IP
+<http://library.gnome.org/devel/gtk/stable/gtk-running.html>
+<http://library.gnome.org/devel/gtk/stable/gtk-x11.html>
+
+.SH ORTAM DEĞİŞKENLERİ
+Brave Web Tarayıcı, aşağıdaki ortam değişkenlerini destekler:
+
+.TP
+.B all_proxy
+Şu değişkenlerin tümü için kısayol:
+.B http_proxy, https_proxy, ftp_proxy
+
+.TP
+.B http_proxy, https_proxy, ftp_proxy
+HTTP, HTTPS ve FTP için kullanılan proxy sunucuları.  
+.I Not:
+Gnome/KDE proxy ayarları bazı terminallerde bu değişkenlere yansıyabileceğinden, Gnome veya KDE altında çalışırken bu değişkenler sistem proxy ayarları lehine yok sayılabilir.  
+Bu değişkenleri zorla ayarlamak için komut satırı bayraklarını kullanın.
+
+.TP
+.B auto_proxy
+Proxy otomatik yapılandırmasını belirtir.  
+Tanımlı ve boş ise otomatik algılar; aksi takdirde, bir otomatik yapılandırma URL’si olmalıdır.  
+Ancak yukarıdaki Gnome/KDE notuna dikkat edin.
+
+.TP
+.B SOCKS_SERVER
+SOCKS proxy sunucusu (varsayılan olarak SOCKS v4, ancak SOCKS v5 kullanmak için
+.B SOCKS_VERSION=5
+ayarlanabilir).
+
+.TP
+.B no_proxy
+Proxy kullanılmaması gereken ana bilgisayar veya desenlerin virgülle ayrılmış listesi.
+
+.SH DOSYALAR
+.TP
+.I $HOME/.config/brave-browser
+Varsayılan yapılandırma verileri dizini.
+
+.TP
+.I $HOME/.cache/brave-browser
+Varsayılan önbellek dizini. (Neden?  
+Bkz: <http://standards.freedesktop.org/basedir-spec/latest/> .)
+
+.SH HATALAR
+Hata takipçisi:
+.IP
+https://github.com/brave/brave-browser/issues/
+.PP
+Hata bildirmeden önce "Tüm Sorunlar" içinde arama yaptığınızdan emin olun  
+ve yeni bir hata bildirirken "Linux Hatası" şablonunu seçin.
+
+.SH YAZAR
+Brave Software \- <https://brave.com/>
+
