@@ -1,0 +1,138 @@
+.TH "ANI-CLI" "1" "Ocak 2023" "ani-cli" "Kullanıcı Komutları"
+.SH İSİM
+ani-cli \- komut satırından anime izle
+.SH SİNOPSİS
+.B ani-cli
+[\fI\,SEÇENEKLER\/\fR]
+.SH AÇIKLAMA
+Komut satırından anime'lere göz atmak ve arama yapmak için bir kabuk betiği. [cite: 1, 2, 3]
+.PD 0
+.P
+.PD
+Bu araç, allanime sitesinden veri çeker. [cite: 2]
+.PD 0
+.P
+.PD
+Seçenekler olmadan \f[B]ani-cli\f[R], macOS'ta iina'yı, Steamdeck'te flatpak mpv'yi, android'de mpv apk'yı, iOS'ta vlc'yi ve diğer her yerde mpv medya oynatıcısını varsayılan olarak kullanır. [cite: 2]
+.SH SEÇENEKLER
+.TP
+\fB\-e | --bölüm | -r | --aralık\fR \fI\,<bölüm>\/\fR
+İzlenecek bölüm numaralarını belirtin. [cite: 3, 4] Aralık belirtilirse, tırnak içinde veya sayısal olmayan bir karakterle (örn. -) ayrılmalıdır. [cite: 4]
+.TP
+\fB\-c |
+.TP
+\fB\--devam\fR
+Anime'yi geçmişten izlemeye devam et. [cite: 5]
+.TP
+\fB\-d | --indir\fR
+Bölümü indir. [cite: 5]
+.TP
+\fB\-D | --sil\fR
+Geçmişi sil. [cite: 5]
+.TP
+\fB\-S | --seç-nci\fR \fI\,<indeks>\/\fR
+N'inci girişi seçer. [cite: 5, 6]
+.TP
+\fB\-h | --yardım\fR
+Seçeneklerin özetini göster. [cite: 6]
+.TP
+\fB\-q | --kalite\fR \fI\,<eniyi|enkötü|360|480|720|1080>\/\fR
+Video kalitesini ayarlar. Varsayılan kalite en iyisidir. [cite: 6, 7]
+.TP
+\fB\-s |
+.TP
+\fB\--syncplay\fR
+Syncplay kullanarak arkadaşlarınızla birlikte anime izleyin (sadece mpv ile çalışır). [cite: 7]
+.TP
+\fB\-U | --güncelle\fR
+Github'dan güncellemeyi getir. [cite: 7]
+.TP
+\fB\-v |
+.TP
+\fB\--vlc\fR
+Medya oynatıcı olarak VLC'yi kullan. [cite: 7, 8]
+.TP
+\fB\-N | --etkileşimsiz\fR
+Etkileşimli menüyü devre dışı bırak. [cite: 8]
+.TP
+\fB\-S | --seç-nci\fR \fI\,<indeks>\/\fR
+N'inci girişi seçer. [cite: 8]
+.TP
+\fB\--dub\fR
+Dublajlı sürümü oynat. Bu işaret olmadan, her zaman altyazılı sürümü oynatır. [cite: 9]
+.TP
+\fB\--rofi\fR
+Etkileşimli menü için fzf yerine rofi kullanın. [cite: 9, 10]
+.TP
+\fB\--atla\fR
+Bölümün girişini atlamak için ani-skip kullanın (sadece mpv). [cite: 10]
+.TP
+\fB\--ayır-ma\fR
+Oynatıcıyı ayırma (terminal içi oynatma için kullanışlıdır, sadece mpv). [cite: 10]
+.TP
+\fB\--başlık-atla\fR \fI\,<başlık>\/\fR
+Ani-skip için kullanılacak başlığı belirtin. [cite: 10]
+.PP
+.SH ÇEVRE DEĞİŞKENLERİ
+.PP
+ani-cli v4, bir seçeneği olan her şeye ek olarak kararsız/test edilmemiş ve niş özellikleri kontrol etmek için çevre değişkenlerini kullanır. [cite: 10, 11]
+.PP
+Komut satırı seçenekleri, ortam değişkenlerine göre önceliklidir. [cite: 11] Bunların hepsinin değişime tabi olduğunu unutmayın. [cite: 11]
+.TP
+\fBANI_CLI_MODE\fR
+Kazınan medyanın modunu kontrol eder, geçerli seçenekler altyazı veya dublajdır. Varsayılan altyazıdır. [cite: 12]
+.TP
+\fBANI_CLI_DOWNLOAD_DIR\fR
+Dosyaların indirildiği dizini kontrol eder. Varsayılan geçerli dizindir. [cite: 12, 13]
+.TP
+\fBANI_CLI_QUALITY\fR
+Kazınan medyanın kalitesini kontrol eder, allanime'yi geçerli seçenekler için kontrol edin veya en kötü/en iyi olarak ayarlayın. Varsayılan en iyisidir. [cite: 13, 14]
+.TP
+\fBANI_CLI_PLAYER\fR
+ani-cli'nin kullandığı oynatıcıyı ayarlar. Debug (bağlantıları yazdır), download (-d'ye eşdeğer), android_mpv (apk ve am start), android_vlc (apk ve am start), flatpak_mpv (flatpak için), catt (tv'ye yayın yapmak için) veya url'leri oynatabilen herhangi bir oynatıcı olabilir. [cite: 14, 15]
+.TP
+Varsayılanlar için argüman olmadan çalışmaya bakın. [cite: 15, 16]
+\fBANI_CLI_EXTERNAL_MENU\fR
+ani-cli'nin ön ucunu kontrol eder. [cite: 16] 0 (fzf kullanır) veya 1 (rofi dmenu kullanır) olabilir. Varsayılan 0'dır. [cite: 16, 17]
+.TP
+\fBANI_CLI_MULTI_SELECTION\fR
+Seçilen ön uç için çoklu işaretini kontrol eder. [cite: 17] Varsayılan fzf için -m ve rofi dmenu için --multi-select'tir. [cite: 17, 18]
+.TP
+\fBANI_CLI_NON_INTERACTIVE\fR
+Hem -e hem de -S verilirse varsayılan olarak etkindir. [cite: 18] fzf bağımlılık kontrolünü devre dışı bırakır. ANI_CLI_PLAYER="debug" ile çalışıyorsa bazı hata ayıklama bilgilerini de devre dışı bırakır. [cite: 18, 19]
+.TP
+\fBANI_CLI_HIST_DIR\fR
+ani-cli'nin geçmişi saklamak için kullandığı dizini kontrol eder. [cite: 19] /ani-cli alt klasörü, yoksa histfile için orada oluşturulur. Varsayılan, ayarlanmışsa $XDG_STATE_HOME, değilse $HOME/.local/state'dir. [cite: 19, 20]
+.TP
+\fBANI_CLI_DEFAULT_SOURCE\fR
+Varsayılan kaynağı kontrol eder. Geçmiş (-c'ye eşdeğer) geçerlidir, diğer her şey arama anlamına gelir. Varsayılan aramadır. [cite: 20, 21]
+.TP
+\fBANI_CLI_SKIP_INTRO\fR
+Ani-skip'in girişleri atlamak için kullanılıp kullanılmayacağını kontrol eder (sadece mpv ile çalışır). 0 (devre dışı) veya 1 (etkin) olabilir. [cite: 21, 22] Varsayılan 0'dır. [cite: 22, 23]
+.TP
+\fBANI_CLI_NO_DETACH\fR
+mpv'nin oynatma için ana işlemden ayrılıp ayrılmayacağını kontrol eder, bu da kitty gibi terminal oluşturucularla kullanım için yararlı olabilir. [cite: 23, 24] (sadece mpv ile çalışır). 0 (devre dışı) veya 1 (etkin) olabilir. [cite: 23, 24] Varsayılan 0'dır. [cite: 24]
+.TP
+\fBANI_CLI_SKIP_TITLE\fR
+Atlama süreleri için sorgulanacak anime başlığını geçersiz kılar. Herhangi bir dize değeri olabilir. [cite: 25] Varsayılan boştur ve ani-cli tarafından verilen anime başlığına çözümlenir. [cite: 25, 26]
+.PP
+.SH BÖLÜM SEÇİMİ
+.PP
+Birden çok bölüm, fzf'nin (veya alternatif ön ucun) çoklu seçim modu kullanılarak seçilebilir. Bunun için talimatlarına bakın. [cite: 27]
+.SH HATALAR
+.PP
+GitHub sorun izleyicisini kullanın:
+https://github.com/pystardust/ani-cli/issues
+.SH TELİF HAKKI
+.PP
+ani-cli, GNU Genel Kamu Lisansı v3.0 altında lisanslanmıştır. [cite: 28]
+.PP
+Bu program ücretsiz bir yazılımdır: onu yeniden dağıtabilir ve/veya
+GNU Genel Kamu Lisansı'nın Free Software Foundation tarafından yayınlanan 3. sürümü veya
+(isteğinize bağlı olarak) daha sonraki herhangi bir sürümü altında değiştirebilirsiniz. [cite: 28]
+.PP
+Bu programın yararlı olması umuduyla dağıtılır,
+ancak HİÇBİR GARANTİSİ YOKTUR; [cite: 28, 29, 30]
+TİCARİ ELVERİŞLİLİK veya BELİRLİ BİR AMACA UYGUNLUK zımni garantisi bile olmadan. [cite: 29, 30] Ayrıntılar için GNU Genel Kamu Lisansı'na bakın. [cite: 30, 31]
+.PP
+Bu programla birlikte GNU Genel Kamu Lisansı'nın bir kopyasını almış olmanız gerekir. [cite: 31] Değilse, bkz. <http://www.gnu.org/licenses/>. [cite: 31]
