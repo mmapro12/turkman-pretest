@@ -1,0 +1,255 @@
+.\" Man sayfası reStructuredText'ten oluşturuldu.
+
+
+
+.nr rst2man-indent-level 0
+
+.de1 rstReportMargin
+\\$1 \\n[an-margin]
+seviye \\n[rst2man-indent-level]
+seviye kenar boşluğu: \\n[rst2man-indent\\n[rst2man-indent-level]]
+-
+\\n[rst2man-indent0]
+\\n[rst2man-indent1]
+\\n[rst2man-indent2]
+..
+.de1 INDENT
+.\" .rstReportMargin öncesi:
+. RS \\$1
+.nr rst2man-indent\\n[rst2man-indent-level] \\n[an-margin]
+.nr rst2man-indent-level +1
+.\" .rstReportMargin sonrası:
+..
+.de UNINDENT
+. RE
+.\" girinti \\n[an-margin]
+.\" eski: \\n[rst2man-indent\\n[rst2man-indent-level]]
+.nr rst2man-indent-level -1
+.\" yeni: \\n[rst2man-indent\\n[rst2man-indent-level]]
+.in \\n[rst2man-indent\\n[rst2man-indent-level]]u
+..
+.TH "PIP" 1 "2014-06-03" "1.5.6"
+.SH NAME
+pip \- Bir Python paketlerini kurma ve yönetme aracı
+.SH SYNOPSIS
+.sp
+pip <komut> [seçenekler]
+.sp
+pip3 <komut> [seçenekler]
+.SH DESCRIPTION
+.sp
+\fBpip\fP, Debian arşivinde bulunmayan Python paketlerini kurmak için önerilen bir Python paket yükleyicisidir. [cite: 2, 3]
+Sürüm kontrol depoları (şu anda yalnızca Git, Mercurial ve Bazaar depoları), çıktıları kapsamlı bir şekilde kaydetme ve kuruluma başlamadan önce tüm gereksinimleri indirerek kısmi kurulumları önleme ile çalışabilir. [cite: 3]
+.sp
+Debian'da, Python 2 için paketler kurulurken kullanılan komut \fBpip\fP, Python 3 için paketler kurulurken kullanılan komut ise \fBpip3\fP'tür. [cite: 4]
+.SH KOMUTLAR
+.sp
+Komut, herhangi bir seçeneğin önüne gelir. [cite: 5]
+Aşağıdaki komutlar tanınır:
+.INDENT 0.0
+.TP
+.B help
+Komutlar için yardım göster.
+.TP
+.B install
+Paketleri kur.
+.TP
+.B uninstall
+Paketleri kaldır. [cite: 5, 6]
+.TP
+.B freeze
+Kurulu paketleri gereksinimler formatında çıktıla.
+.TP
+.B list
+Kurulu paketleri listele.
+.TP
+.B show
+Kurulu paketler hakkında bilgi göster. [cite: 6, 7]
+.TP
+.B search
+PyPI'da paket ara.
+.TP
+.B wheel
+Gereksinimlerinizden wheel'lar oluştur. [cite: 7, 8]
+.UNINDENT
+.SH GENEL SEÇENEKLER
+.sp
+Bu liste hiçbir şekilde eksiksiz değildir ve yalnızca tüm komutlar tarafından kullanılabilen seçenekleri açıklar. [cite: 8, 9]
+Komuta özel seçenekler hakkında daha fazla bilgi için \fBpip <komut> \-\-help\fP'i kullanın. [cite: 9, 10]
+Birkaç komut seçeneği aşağıda verilmiştir. [cite: 10]
+.INDENT 0.0
+.TP
+.B \-h\fP,\fB \-\-help
+Daha ayrıntılı komut yardımı göster.
+.TP
+.B \-v\fP,\fB \-\-verbose
+Daha fazla çıktı ver. [cite: 10, 11]
+Seçenek eklenir ve 3 defaya kadar kullanılabilir. [cite: 11]
+.TP
+.B \-V\fP,\fB \-\-version
+Sürümü göster ve çık. [cite: 11, 12]
+.TP
+.B \-q\fP,\fB \-\-quiet
+Daha az çıktı ver.
+.TP
+.BI \-\-log\-file\ <yol>
+Yalnızca hataları kaydeden, ayrıntılı, eklemeyen bir günlük için yol. [cite: 12, 13]
+Bu günlük, varsayılan olarak \fI~/.pip/pip.log\fP'de etkindir. [cite: 13]
+.TP
+.BI \-\-log\ <yol>
+Ayrıntılı ekleyen bir günlük için yol. [cite: 13, 14]
+Bu günlük varsayılan olarak etkin değildir. [cite: 14]
+.TP
+.BI \-\-proxy\ <proxy>
+\fB[user:passwd@]proxy.server:port\fP biçiminde bir proxy belirtin. [cite: 14, 15]
+.TP
+.BI \-\-timeout\ <sn>
+Soket zaman aşımını ayarlayın (varsayılan 15 saniye). [cite: 15, 16]
+.TP
+.BI \-\-exists\-action\ <eylem>
+Bir yol zaten mevcut olduğunda varsayılan eylem: (s)witch, (i)gnore, (w)ipe, (b)ackup. [cite: 16, 17]
+.TP
+.BI \-\-cert\ <yol>
+Alternatif CA paketi için yol. [cite: 17]
+.UNINDENT
+.SH INSTALL OPTIONS
+.sp
+\fBpip install\fP, paketleri şuradan kurar:
+.INDENT 0.0
+.INDENT 3.5
+.INDENT 0.0
+.IP \(bu 2
+Gereksinim belirleyicilerini kullanarak PyPI (diğer adıyla The Cheeseshop) ve diğer indeksler. [cite: 17]
+.IP \(bu 2
+VCS proje url'leri. [cite: 17]
+.IP \(bu 2
+Yerel proje dizinleri. [cite: 17]
+.IP \(bu 2
+Yerel veya uzak kaynak arşivleri [cite: 17]
+.IP \(bu 2
+Yerel wheel dizinleri (python-pip-whl, wheel'larını /usr/share/python-wheels'a kurar ve \-\-find\-links kullanılarak pip tarafından yerel olarak kurulabilirler) [cite: 17]
+.UNINDENT
+.UNINDENT
+.UNINDENT
+.INDENT 0.0
+.TP
+.BI \-e\fP,\fB \-\-editable\ <yol/url>
+Bir projeyi yerel bir proje yolundan veya bir VCS url'sinden düzenlenebilir modda (yani setuptools'un "develop" modu) kurun. [cite: 17]
+.TP
+.BI \-r\fP,\fB \-\-requirement\ <dosya>
+Verilen gereksinimler dosyasından kurun. Bu seçenek birden çok kez kullanılabilir. [cite: 17, 18]
+.TP
+.BI \-t\fP,\fB \-\-target\ <dizin>
+Paketleri <dizin>'e kurun. [cite: 18]
+.TP
+.BI \-d\fP,\fB \-\-download\ <dizin>
+Zaten neyin kurulu olduğuna bakılmaksızın, paketleri kurmak yerine <dizin>'e indirin. [cite: 18, 19]
+.TP
+.BI \-\-download\-cache\ <dizin>
+İndirilen paketleri <dizin>'de önbelleğe alın. [cite: 19]
+.TP
+.BI \-\-src\ <dizin>
+Düzenlenebilir projeleri içine kontrol etmek için dizin. [cite: 19, 20]
+Bir virtualenv'deki varsayılan "<venv yolu>/src"'dir. Global kurulumlar için varsayılan "<geçerli dizin>/src"'dir. [cite: 20]
+.TP
+.B \-U\fP,\fB \-\-upgrade
+Tüm paketleri mevcut olan en yeni sürüme yükseltin. Bir bağımlılık zaten karşılanmış olsa bile bu işlem yinelemeli olarak yapılır. [cite: 20]
+.TP
+.B \-\-force\-reinstall
+Yükseltme yaparken, zaten güncel olsalar bile tüm paketleri yeniden kurun. [cite: 20]
+.TP
+.B \-I\fP,\fB \-\-ignore\-installed
+Kurulu paketleri yoksayın (bunun yerine yeniden kurun). [cite: 20]
+.TP
+.B \-\-no\-deps
+Paket bağımlılıklarını kurmayın. [cite: 20]
+.TP
+.BI \-\-install\-option\ <seçenekler>
+setup.py install komutuna sağlanacak ek argümanlar (örneğin \-\-install\-option ='\-\-install-scripts=/usr/local/bin' gibi kullanın). setup.py install'a birden çok seçenek iletmek için birden çok \-\-install-option seçeneği kullanın. Bir dizin yolu olan bir seçenek kullanıyorsanız, mutlak yol kullandığınızdan emin olun. [cite: 20, 21]
+.TP
+.BI \-\-global\-option\ <seçenekler>
+install komutundan önce setup.py çağrısına sağlanacak ek global seçenekler. [cite: 21, 22]
+.TP
+.B \-\-user
+Kullanıcı şemasını kullanarak kurun. [cite: 22]
+.TP
+.B \-\-egg
+Paketleri pip'in normalde yaptığı gibi 'düz' değil, egg olarak kurun. Bu seçenek, egg'lerden kurmakla ilgili değildir. (UYARI: Bu seçenek pip'in normal kurulum mantığını geçersiz kıldığından, gereksinimler dosyaları beklendiği gibi davranmayabilir.) [cite: 22]
+.TP
+.BI \-\-root\ <dizin>
+Her şeyi bu alternatif kök dizinine göre kurun. [cite: 22]
+.TP
+.B \-\-compile
+py dosyalarını pyc'ye derleyin. [cite: 22]
+.TP
+.B \-\-no\-compile
+py dosyalarını pyc'ye derlemeyin. [cite: 22]
+.TP
+.B \-\-no\-use\-wheel
+İndeksleri ve find-links konumlarını ararken wheel arşivlerini bulmayın ve tercih etmeyin. [cite: 22]
+.TP
+.B \-\-pre
+Ön sürüm ve geliştirme sürümlerini dahil edin. Varsayılan olarak, pip yalnızca kararlı sürümleri bulur. [cite: 22]
+.TP
+.B \-\-no\-clean
+Derleme dizinlerini temizlemeyin. [cite: 22]
+.UNINDENT
+.sp
+Paket İndeksi Seçenekleri:
+.INDENT 0.0
+.TP
+.BI \-i\fP,\fB
+\-\-index\-url\ <url>
+Python Paket İndeksi'nin temel URL'si (varsayılan \fI\%https://pypi.python.org/simple/\fP). [cite: 22, 23]
+.TP
+.BI \-\-extra\-index\-url\ <url>
+\-\-index-url'e ek olarak kullanılacak ek paket indeks URL'leri. [cite: 23, 24]
+.TP
+.B \-\-no\-index
+Paket indeksini yoksayın (bunun yerine yalnızca \-\-find-links URL'lerine bakın). [cite: 24, 25]
+.TP
+.BI \-f\fP,\fB \-\-find\-links\ <url>
+Bir url veya bir html dosyasına giden bir yolsa, arşivlere giden bağlantılar için ayrıştırın. [cite: 25, 26]
+Yerel bir yol veya bir dizin olan \fI\%file://\fP url'si ise, dizin listesinde arşivleri arayın. [cite: 26]
+.TP
+.BI \-\-allow\-external\ <paket>
+Harici olarak barındırılan dosyaların kurulumuna izin verin [cite: 26]
+.TP
+.B \-\-allow\-all\-external
+Harici olarak barındırılan tüm dosyaların kurulumuna izin verin [cite: 26]
+.TP
+.BI \-\-allow\-unverified\ <paket>
+Güvenli olmayan ve doğrulanamayan dosyaların kurulumuna izin verin [cite: 26]
+.TP
+.B \-\-process\-dependency\-links
+Bağımlılık bağlantılarının işlenmesini etkinleştirin. [cite: 26]
+.UNINDENT
+.SH UNINSTALL OPTIONS
+.sp
+pip, kurulu paketlerin çoğunu kaldırabilir. Bilinen istisnalar şunlardır:
+.INDENT 0.0
+.INDENT 3.5
+.INDENT 0.0
+.IP \(bu 2
+Hangi dosyaların kurulduğunu belirlemek için hiçbir meta veri bırakmayan \fBpython setup.py install\fP ile kurulan saf distutils paketleri. [cite: 26]
+.IP \(bu 2
+\fBpython setup.py develop\fP tarafından kurulan komut dosyası sarmalayıcıları. [cite: 26]
+.UNINDENT
+.UNINDENT
+.UNINDENT
+.INDENT 0.0
+.TP
+.BI \-r\fP,\fB \-\-requirement\ <dosya>
+Verilen gereksinimler dosyasında listelenen tüm paketleri kaldırın. Bu seçenek birden çok kez kullanılabilir. [cite: 26, 27, 28]
+.TP
+.B \-y\fP,\fB \-\-yes
+Kaldırma silme işlemlerinin onayını istemeyin. [cite: 28]
+.UNINDENT
+.SH AUTHORS
+.sp
+Bu kılavuz sayfası aslen Jeff Licquia <\fI\%licquia@debian.org\fP> tarafından yazılmıştır, daha sonra Carl Chenet <\fI\%chaica@debian.org\fP> tarafından yeniden yazılmıştır. Barry Warsaw <\fI\%barry@debian.org\fP> tarafından yeniden yazılmış ve kaynak reStructuredText'e dönüştürülmüştür.
+.sp
+Bu belgeyi, Free Software Foundation tarafından yayınlanan GNU Genel Kamu Lisansı'nın 3. sürümü veya daha sonraki herhangi bir sürümü koşulları altında kopyalamaya, dağıtmaya ve/veya değiştirmeye izin verilir.
+.SH AUTHOR
+Barry Warsaw <barry@debian.org>
+.\" docutils manpage yazarı tarafından oluşturuldu.
