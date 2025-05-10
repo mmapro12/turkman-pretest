@@ -1,0 +1,311 @@
+.nr N -1
+.nr D 5
+.TH W3M 1 "2016-08-06" "w3m 0.5.3"
+.SH NAME
+w3m - metin tabanlı bir web tarayıcısı ve sayfalayıcı
+.SH SYNOPSIS
+w3m [OPTION]... [ \fIfile\fP |
+\fIURL\fP ]...
+.SH DESCRIPTION
+." Bu, nroff ve troff için uygun alıntı dizilerini tanımlar
+.ds lq &"
+.ds rq &"
+.if t .ds lq ``
+.if t .ds rq ''
+." Her ihtimale karşı, bu sayı kayıtları henüz ayarlanmamışsa...
+.if \nN==0 .nr N 10
+.if \nD==0 .nr D 5
+
+\fIw3m\fP, yerel veya uzak web sayfalarını ve diğer belgeleri görüntüleyebilen metin tabanlı bir tarayıcıdır.  HTML tablolarını ve çerçevelerini işleyebilir, ancak JavaScript ve Basamaklı Stil Sayfalarını göz ardı eder.  \fIw3m\fP, argüman olarak adlandırılan veya standart girdiden geçirilen metin dosyaları için bir sayfalayıcı ve genel amaçlı bir dizin tarayıcısı olarak da hizmet verebilir.  
+
+\fIw3m\fP, içeriğini arabelleklerde veya sekmelerde düzenleyerek bunlar arasında kolay gezinme sağlar.  w3m-img uzantısı yüklendiğinde, \fIw3m\fP, web sayfalarında satır içi grafikleri görüntüleyebilir.  Ve \fIw3m\fP'nin HTML oluşturma yetenekleri ihtiyaçlarınızı karşılamadığında, hedef URL tek bir komutla grafiksel bir tarayıcıya aktarılabilir.  
+
+Çalışma zamanı seçenekleriyle ilgili yardım için, \fIw3m\fP çalışırken (lqH(rq tuşuna basın.  
+
+.SH ARGUMENTS
+
+Bir veya daha fazla komut satırı argümanı verildiğinde, \fIw3m\fP hedefleri içerik türüne göre işleyecektir. Web için, \fIw3m\fP bu bilgiyi HTTP başlıklarından alır; göreli veya mutlak dosya sistemi yolları için dosya adlarına güvenir.
+
+Argüman verilmediğinde, \fIw3m\fP standart girdiden veri bekler ve kullanıcı tarafından başka bir MIME türü verilmedikçe (lqtext/plain(rq olduğunu varsayar.
+
+Hedef ve yedek hedef sağlanmazsa (örneğin, aşağıdaki \fB-v\fP seçeneğine bakın), \fIw3m\fP kullanım bilgileriyle birlikte çıkar.
+
+.SH OPTIONS
+Komut satırı seçenekleri tek bir (lq-(rq karakteriyle başlar ve bir argüman alabilir.
+
+.SS General options
+
+.TP
+\fB-B\fP
+başka hedef tanımlanmamışsa, başlangıç için yer imi sayfasını kullan
+.TP
+\fB-H\fP
+yüksek yoğunluklu renkler kullan
+.TP
+\fB-M\fP
+monokrom ekran
+.TP
+\fB-no-mouse\fP
+fare desteğini devre dışı bırak
+.TP
+\fB-num\fP
+her satırın numarasını görüntüle
+.TP
+\fB-N\fP
+birden çok komut satırı argümanını sekmelere dağıt.  Varsayılan olarak, bir arabellek yığını kullanılır
+.TP
+\fB-ppc \fInum\fR
+karakter başına \fInum\fR piksel genişliği.
+Aralık 4.0 ila 32.0, varsayılan 8.0.  Daha büyük değerler tabloları daraltır. (Uygulama doğrulanmadı)
+.TP
+\fB-ppl \fInum\fR
+satır başına \fInum\fR piksel yüksekliği.
+Aralık 4.0 ila 64.0.  (Uygulama doğrulanmadı)
+.TP
+\fB-title\fP, \fB-title=TERM\fP
+arabellek adını terminal başlık dizesi olarak kullan.  Belirtilen TERM ile, bu başlık yapılandırma stilini buna göre ayarlar
+.TP
+\fB-v\fP
+başka hedef tanımlanmamışsa, kullanıcıları yerleşik bir sayfayla karşıla
+.TP
+\fB-W\fP
+arama işlemlerinde kaydırma modunu değiştir
+.TP
+\fB-X\fP
+terminali başlatma/başlatmayı iptal et
+.TP
+\fB+\fInum\fR
+\fInum\fR satırına git; yalnızca terminaldeki satır sayısından büyük \fInum\fR için etkilidir  
+
+.SS Browser options
+
+.TP
+\fB-cols \fInum\fR
+hedef olarak stdout ile; HTML, \fInum\fR karakterlik satırlara işlenir 
+.TP
+\fB-cookie\fP, \fB-no-cookie\fP
+kaydedilmiş çerezleri kullan ve yenilerini kabul et veya hiçbirini yapma
+.TP
+\fB-F\fP
+çerçeveleri işle
+.TP
+\fB-graph\fP, \fB-no-graph\fP
+HTML tablo ve çerçeve kenarlıklarını çizmek için grafik karakterleri kullan veya kullanma
+.TP
+\fB-header \fIstring\fR
+HTTP(S) isteğine \fIstring\fR ekle.  \f(CWVariable: Value\fP başlık sözdizimine uyması beklenir
+.TP
+\fB-m\fP
+Usenet mesajlarının gövdesini (lqContent-type(rq başlığına göre işle
+.TP
+\fB-no-proxy\fP
+proxy kullanma
+.TP
+\fB-post \fIfile\fR
+\fIfile\fR içinde tanımlanan verileri yüklemek için POST yöntemini kullan.
+Kullanılacak sözdizimi \f(CWvar1=value1[&amp;var2=value2]...\fP şeklindedir
+.TP
+\fB-4\fP
+Yalnızca IPv4.
+Yapılandırma dosyalarında dns_order=4'e karşılık gelir
+.TP
+\fB-6\fP
+Yalnızca IPv6.
+Yapılandırma dosyalarında dns_order=6'ya karşılık gelir
+.TP
+\fB-insecure\fP
+güvenli olmayan SSL yapılandırma seçeneklerini kullan,
+\f(CW-o ssl_cipher=ALL:eNULL:@SECLEVEL=0 -o ssl_min_version=all
+-o ssl_forbid_method= -o ssl_verify_server=0\fP için takma ad  
+
+.SS Text pager options
+
+.TP
+\fB-l \fInum\fR
+stdin'den düz metin alırken dahili olarak korunan satır sayısı (varsayılan 10.000)
+.TP
+\fB-r\fP
+özel kaçış karakterlerini (ANSI kaçışları veya kalın ve altı çizili karakterler için nroff tarzı geri almalar gibi) işlemek yerine görüntülemek için şapka gösterimini kullan
+.TP
+\fB-s\fP
+birden çok boş satırı tek bir satıra sıkıştır
+.TP
+\fB-t\fP
+\fInum\fR
+sekme genişliğini \fInum\fR sütuna ayarla.
+Stdout üzerinde etkisi yoktur  
+
+.SS Data type/encoding options
+
+.TP
+\fB-I \fIcharset\fR
+giriş verilerinin kullanıcı tanımlı karakter kodlaması
+.TP
+\fB-O \fIcharset\fR
+çıkış verilerinin kullanıcı tanımlı karakter kodlaması
+.TP
+\fB-T \fItype\fR
+giriş verilerinin MIME türüne göre açık karakterizasyonu
+
+.SS Options for data output, followed by immediate exit
+
+.TP
+\fB-dump\fP
+oluşturulan sayfayı stdout'a dök.  Çıktı bir dosyaya veya pipe'a yönlendirildiğinde örtük olarak ayarlanır
+.TP
+\fB-dump_source\fP
+sayfanın kaynak kodunu stdout'a dök
+.TP
+\fB-dump_head\fP
+bir URL için HEAD isteğinin yanıtını stdout'a dök
+.TP
+\fB-dump_both\fP
+bir URL için HEAD ve kaynak kodunu stdout'a dök
+.TP
+\fB-dump_extra\fP
+bir URL için HEAD, kaynak kodu ve ek bilgileri stdout'a dök
+.TP
+\fB-help\fP
+derlenmiş özelliklerin ve komut satırı seçeneklerinin bir özetini göster
+.TP
+\fB-show-option\fP
+mevcut tüm yapılandırma seçeneklerini göster
+.TP
+\fB-version\fP
+\fIw3m\fP'nin sürümünü göster  
+
+.SS Options for overriding default settings and resources
+
+.TP
+\fB-bookmark \fIfile\fR
+varsayılan bookmark.html dosyası yerine \fIfile\fR dosyasını kullan
+.TP
+\fB-config \fIfile\fR
+varsayılan yapılandırma dosyası yerine \fIfile\fR dosyasını kullan
+.TP
+\fB-o \fIoption=value\fR
+bir yapılandırma öğesini açıkça verilen bir değerle değiştir; \fIoption=value\fR olmadan, \fB-show-option\fR ile eşdeğerdir 
+.TP
+\fB-debug\fP
+hata ayıklama modunu kullan (yalnızca hata ayıklama için)
+.TP
+\fB-reqlog\fP
+HTTP iletişiminin başlıklarını \f(CW~/.w3m/request.log\fP dosyasına kaydet  
+
+.SH EXAMPLES
+
+.SS Pager-like usage
+
+.TP
+HTML kodu parçacıklarını birleştirin ve sayfayı önizleyin
+.EX
+$ cat header.html footer.html | w3m -T text/html
+.EE
+.TP
+Sekmeleri kullanarak iki dosyayı karşılaştırın
+.EX
+$ w3m -N config.old config
+.EE
+
+.SS Browser-like usage
+
+.TP
+Web içeriğini monokrom terminalde görüntüleyin
+.EX
+$ w3m -M http://w3m.sourceforge.net
+.EE
+.TP
+Gömülü grafikleri görüntüleyin
+.EX
+$ w3m -o auto_image=TRUE http://w3m.sourceforge.net
+.EE
+.TP
+Usenet'ten içerik görüntüleyin
+.EX
+$ w3m -m nntp://news.aioe.org/comp.os.linux.networking
+.EE
+.TP
+POST yöntemini kullanarak bir URL için veri yükleyin
+.EX
+$ w3m -post - http://example.com/form.php &lt;&lt;&lt;'a=0&amp;b=1'
+.EE
+
+.SS Filter-like usage
+
+.TP
+Bir HTML dosyasını tanımlı bir satır uzunluğuyla düz metne dönüştürün
+.EX
+$ w3m -cols 40 foo.html > foo.txt
+.EE
+.TP
+Yer imleri sayfasını, eklenmiş bir bağlantı listesiyle metin olarak çıktılayın 
+.EX
+$ w3m -B -o display_link_number=1 > out.txt
+.EE
+.TP
+Dosya biçimi ve karakter kodlaması dönüştürme
+.EX
+$ w3m -T text/html -I EUC-JP -O UTF-8 &lt; foo.html > foo.txt
+.EE  
+
+.SS Start with no input
+
+.TP
+Kullanıcıları yerleşik bir sayfayla karşılayın
+.EX
+$ w3m -v
+.EE
+.".SH Errors
+.SH ENVIRONMENT
+\fIw3m\fP, bir tane olmadan çağrılırsa kullanılacak bir yedek hedefi tanımlayan \fBWWW_HOME\fP ortam değişkenini tanır.  \fBW3M_DIR\fP ortam değişkeni bir dizin adıyla ayarlanırsa, \fIw3m\fP kullanıcı dosyalarını ~/.w3m dizini yerine orada saklar..SH FILES
+Bazı dosyaların varsayılan konumları aşağıda listelenmiştir. Bu konumlar \fBW3M_DIR\fP ortam değişkeni aracılığıyla değiştirilebilir.  
+
+.TP
+\f(CW~/.w3m/bookmark.html\fP
+varsayılan yer imi dosyası
+.TP
+\f(CW~/.w3m/config\fP
+kullanıcı tanımlı yapılandırma dosyası; \f(CW/etc/w3m/config\fP dosyasını geçersiz kılar
+.TP
+\f(CW~/.w3m/cookie\fP
+çerez kavanozu; çıkışta yazılır, başlatmada okunur
+.TP
+\f(CW~/.w3m/history\fP
+tarayıcı geçmişi - ziyaret edilen dosyalar ve URL'ler
+.TP
+\f(CW~/.w3m/keymap\fP
+kullanıcı tanımlı tuş bağlamaları; varsayılan tuş bağlamalarını geçersiz kılar
+.TP
+\f(CW~/.w3m/mailcap\fP
+harici görüntüleyici yapılandırma dosyası
+.TP
+\f(CW~/.w3m/menu\fP
+kullanıcı tanımlı menü; varsayılan menüyü geçersiz kılar
+.TP
+\f(CW~/.w3m/mime.types\fP
+MIME türleri dosyası
+.TP
+\f(CW~/.w3m/mouse\fP
+kullanıcı tanımlı fare ayarları
+.TP
+\f(CW~/.w3m/passwd\fP
+parola ve kullanıcı adı dosyası
+.TP
+\f(CW~/.w3m/pre_form\fP
+yinelenen HTML formlarını doldurmak için önceden tanımlanmış değerler içerir
+." .TP
+." .I $~/.w3m/urimethodmap
+." ???
+.SH SEE ALSO
+README ve örnek dosyaları, \fIw3m\fP kurulumunuzun doc dizininde bulunabilir.
+\fIw3m\fP hakkında güncel bilgilere şu adresten ulaşılabilir:
+.UR http://w3m.sourceforge.net
+projenin web sayfaları
+.UE
+.SH ACKNOWLEDGMENTS
+\fIw3m\fP, çeşitli kaynaklardan kod içermektedir.  Kullanıcılar zaman içinde yamalar ve önerilerde bulunmuştur.  
+
+.SH AUTHOR
+.MT aito@fw.ipsj.or.jp
+Akinori ITO
+.ME
