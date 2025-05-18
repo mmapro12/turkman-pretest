@@ -1,11 +1,8 @@
 
-# Turkman Depo
+# Turkmandb
 
-Bu repo, turkman reposunun çevrilmiş man dosyalarının reposudur.Daha fazla bilgi için:
+Turkmandb için yapılan çeviriler burada saklanır.Daha fazla bilgi için turkman reposunu ziyaret edebilirsiniz:
+https://github.com/mmapro12/turkman 
 
-https://github.com/mmapro12/turkman
-
-## Yazarlar
-
-- [@mmapro12](https://www.github.com/mmapro12)
+Yakında burada turkmandb ile ilgili daha detaylı bilgiler bulunacaktır.
 
