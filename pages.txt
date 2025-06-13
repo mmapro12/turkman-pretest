@@ -2,3 +2,4 @@ brave-browser
 pip3
 ani-cli
 w3m
+turkman
