@@ -1,0 +1,425 @@
+.Dd December 17, 2017
+.Dt NVIM 1
+.Os
+.Sh NAME
+.Nm nvim
+.Nd metin düzenleyici
+.Sh SYNOPSIS
+.Nm
+.Op Ar options
+.Op Ar file ...
+.Nm
+.Op Ar options
+.Fl
+.Nm
+.Op Ar options
+.Fl t Ar tag
+.Nm
+.Op Ar options
+.Fl q Op Ar errorfile
+.Sh DESCRIPTION
+.Nm
+Vim tabanlı bir metin düzenleyicidir.
+.Nm
+komutunu herhangi bir seçenek ve/veya dosya ile başlatın:
+.Pp
+.Dl nvim [options] [file ...]
+.Pp
+.Nm
+içindeki komutlar iki nokta üst üste ile başlar
+.Pq Sq &: .
+Belirli bir konu hakkında yardım almak için ":help konu" yazın.
+Konuları tamamlamak için &lt;Tab> ve CTRL-D kullanın (":help cmdline-completion").
+.Pp
+"quickref" yardım bölümü, düzenleyici özelliklerinin yoğunlaştırılmış bir referansıdır:
+.Dl :help quickref
+.Pp
+Vim/Nvim'e yeni başlıyorsanız, 30 dakikalık eğitime başlayın:
+.Dl :Tutor
+.Pp
+Nvim'i kurduktan/güncelledikten sonra, kendi kendine denetimi çalıştırmak iyi bir fikirdir:
+.Dl :checkhealth
+.Pp
+.Bl -tag -width Fl
+.It Ar file ...
+Düzenlenecek dosya(lar).
+Her dosya için bir arabellek açar.
+Arabellekler arasında geçiş yapmak için
+.Ic :next
+ve
+.Ic :previous
+komutlarını kullanın.
+.It Fl
+Standart girdiden
+.Dv EOF
+gelene kadar metin okur, ardından o metinle bir arabellek açar.
+Kullanıcı girdisi standart hatadan okunur, bu bir terminal olmalıdır.
+.El
+.Sh OPTIONS
+.Bl -tag -width Fl
+.It Fl t Ar tag
+Etiket dosyasında
+.Ar tag
+değerini bulur, ilişkili dosya geçerli dosya haline gelir ve ilişkili komut yürütülür.
+İmleç dosyadaki etiket konumuna yerleştirilir.
+.Ic ":help tag-commands"
+.It Fl q Op Ar errorfile
+QuickFix modu.
+.Ar errorfile
+içindeki ilk hatayı görüntüler.
+Eğer
+.Ar errorfile
+atlanırsa, 'errorfile' seçeneğinin değeri kullanılır (varsayılan olarak
+.Cm errors.err ).
+Daha fazla hataya
+.Ic :cnext
+komutuyla atlanabilir.
+.Ic ":help quickfix"
+.It Fl -
+Seçeneklerin sonu.
+Kalan argümanlar, tire ile başlayan dosya adları da dahil olmak üzere, değişmez dosya adları olarak kabul edilir
+.Pq Sq - .
+.It Fl e
+Ex modu, stdin'i Ex komutları olarak okur.
+.Ic ":help Ex-mode"
+.It Fl E
+Ex modu, stdin'i metin olarak okur.
+.Ic :help Ex-mode
+.It Fl es
+Sessiz (etkileşimli olmayan) Ex modu, stdin'i Ex komutları olarak okur.
+.Fl e
+'den farklı olarak bir kullanıcı arayüzü başlatmadığı için betik oluşturma için kullanışlıdır.
+.Ic ":help silent-mode"
+.It Fl &amp;Es
+Sessiz (etkileşimli olmayan) Ex modu, stdin'i metin olarak okur.
+.Fl E
+'den farklı olarak bir kullanıcı arayüzü başlatmadığı için betik oluşturma için kullanışlıdır.
+.Ic ":help silent-mode"
+.It Fl d
+Diff modu.
+İki ila sekiz dosya arasındaki farkı
+.Xr sdiff 1
+'e benzer şekilde gösterir.
+.Ic ":help diff"
+.It Fl R
+Salt okunur mod.
+'readonly' seçeneğini ayarlar.
+.Fl n
+anlamına gelir.
+Arabellekler hala düzenlenebilir, ancak zaten bir dosyayla ilişkiliyse diske yazılamaz.
+Bir dosyanın üzerine yazmak için, ilgili Ex komutuna bir ünlem işareti ekleyin, örneğin
+.Ic :w! .
+.Ic ":help 'readonly'"
+.It Fl m
+Dosya değişikliklerini devre dışı bırakmak için 'write' seçeneğini sıfırlar.
+Bir dosyaya yazma devre dışı bırakılır, ancak arabellekler hala değiştirilebilir.
+.It Fl M
+Dosya ve arabellek değişikliklerini devre dışı bırakmak için 'write' ve 'modifiable' seçeneklerini sıfırlar.
+.It Fl b
+İkili mod.
+.Ic ":help edit-binary"
+.It Fl A
+Arapça modu.
+'arabic' seçeneğini ayarlar.
+.It Fl H
+İbranice modu.
+'hkmap' ve 'rightleft' seçeneklerini ayarlar.
+.It Fl V Ns Oo Ar N Oc Ns Op Ar file
+Ayrıntılı mod.
+Hata ayıklama mesajlarını yazdırır.
+.Ar N
+'verbose' seviyesidir, varsayılan olarak
+.Cm 10
+'dur.
+Eğer
+.Ar file
+belirtilirse, mesajları yazdırmak yerine
+.Ar file
+'a ekler.
+.Ic ":help 'verbose'"
+.It Fl D
+Vimscript hata ayıklama modu.
+Bir betikten ilk komut yürütüldüğünde başlar.
+:help debug-mode
+.It Fl n
+Takas dosyalarının kullanımını devre dışı bırakır.
+'updatecount' seçeneğini
+.Cm 0
+olarak ayarlar.
+Yavaş bir ortamdaki dosyaları düzenlemek için kullanışlı olabilir.
+.It Fl r Op Ar file
+Kurtarma modu.
+Eğer
+.Ar file
+atlanırsa, kurtarma bilgileri içeren takas dosyalarını listeler.
+Aksi takdirde, takas dosyası
+.Ar file
+çökmüş bir oturumu kurtarmak için kullanılır.
+Takas dosyası, ilişkili olduğu dosya ile aynı ada sahiptir, ancak sonuna
+.Sq .swp
+eklenmiştir.
+.Ic ":help recovery"
+.It Fl L Op Ar file
+.Fl r
+için diğer ad.
+.It Fl u Ar vimrc
+Varsayılan
+.Pa ~/.config/nvim/init.vim
+yerine
+.Ar vimrc
+kullanır.
+Eğer
+.Ar vimrc
+.Cm NORC
+ise, herhangi bir başlatma dosyası yüklenmez (eklentiler hariç).
+Eğer
+.Ar vimrc
+.Cm NONE
+ise, eklentilerin yüklenmesi de atlanır.
+.Ic ":help initialization"
+.It Fl i Ar shada
+Varsayılan
+.Pa ~/.local/state/nvim/shada/main.shada
+yerine
+.Ar shada
+kullanır.
+Eğer
+.Ar shada
+.Cm NONE
+ise, bir ShaDa dosyası okunmaz veya yazılmaz.
+.Ic ":help shada"
+.It Fl -noplugin
+Eklentilerin yüklenmesini atlar ('noloadplugins' seçeneğini ayarlayarak).
+.Cm -u NONE
+tarafından ima edilir.
+.It Fl -clean
+Nvim'i "fabrika varsayılanları" ile başlatır (kullanıcı yapılandırması ve eklentileri yok, shada yok).
+.Ic ":help --clean"
+.It Fl o Ns Op Ar N
+.Ar N
+pencereyi yatay olarak üst üste yığılmış şekilde açar.
+Eğer
+.Ar N
+atlanırsa, her dosya için bir pencere açar.
+Eğer
+.Ar N
+dosya argümanlarının sayısından az ise, ilk
+.Ar N
+dosya için pencereler tahsis eder ve geri kalanını gizler.
+.It Fl O Ns Op Ar N
+.Fl o
+gibi, ancak pencereleri dikey olarak döşer.
+.It Fl p Ns Op Ar N
+.Fl o
+gibi, ancak sekme sayfaları için.
+.It Cm + Ns Op Ar linenum
+İlk dosya için imleci
+.Ar linenum
+satırına konumlandırır.
+Eğer
+.Ar linenum
+atlanırsa, imleci dosyanın son satırına konumlandırır.
+.Cm +5
+ve
+.Cm -c 5
+komut satırında,
+.Nm
+içindeki
+.Ic :5
+ile eşdeğerdir.
+.It Cm +/ Ns Op Ar pattern
+İlk dosya için imleci
+.Ar pattern
+'ın ilk geçtiği yere konumlandırır.
+Eğer
+.Ar pattern
+atlanırsa, en son arama deseni kullanılır (varsa).
+.Cm +/foo
+ve
+.Cm -c /foo
+komut satırında,
+.Nm
+içindeki
+.Ic /foo
+ve
+.Ic :/foo
+ile eşdeğerdir.
+.Ic ":help search-pattern"
+.It \fB+\fR\fI,command/\fR , Fl c Ar command
+İlk dosya okunduktan sonra
+.Ar command
+'ı yürütür.
+En fazla 10 örneğe izin verilir.
+.Qq Cm +foo
+ve
+.Cm -c (dqfoo(dq
+eşdeğerdir.
+.It Fl -cmd Ar command
+.Fl c
+gibi, ancak herhangi bir vimrc işlenmeden önce
+.Ar command
+'ı yürütür.
+Bunların 10 adede kadar örneği,
+.Fl c
+örneklerinden bağımsız olarak kullanılabilir.
+.It Fl l Ar script Op Ar args
+Önceki Nvim başlangıç argümanları işlendikten sonra isteğe bağlı
+.Op Ar args
+ile Lua
+.Ar script
+'ini yürütür.
+Tüm
+.Op Ar args
+betik argümanları olarak kabul edilir ve Lua'ya olduğu gibi aktarılır, yani
+.Fl l
+Nvim argümanlarının işlenmesini durdurur.
+.Ic ":help -l"
+.It Fl S Op Ar session
+İlk dosya argümanı okunduktan sonra
+.Ar session
+'ı yürütür. Eğer
+.Ar session
+dosya adı
+.Pa .lua
+ile bitiyorsa, Vimscript yerine Lua olarak yürütülür.
+.Cm -c (dqsource session(dq
+ile eşdeğerdir.
+.Ar session
+tire
+.Pq Sq -
+ile başlayamaz.
+Eğer
+.Ar session
+atlanırsa, bulunursa
+.Pa Session.vim
+kullanılır.
+.Ic ":help session-file"
+.It Fl s Ar scriptin
+Normal mod komutlarını
+.Ar scriptin
+'den okur.
+Aynı işlem
+.Ic ":source! scriptin"
+komutuyla da yapılabilir.
+Dosyanın sonuna ulaşılırsa
+.Nm
+çıkmadan önce, daha fazla karakter klavyeden okunur.
+.It Fl w Ar scriptout
+Yazılan tüm karakterleri
+.Ar scriptout
+'a ekler.
+.Fl s
+veya
+.Ic :source!
+ile kullanılacak bir betik oluşturmak için kullanılabilir.
+.It Fl W Ar scriptout
+.Fl w
+gibi, ancak
+.Ar scriptout
+'u keser.
+.It Fl -startuptime Ar file
+Başlangıç sırasında, zamanlama mesajlarını
+.Ar file
+'a ekler.
+Yavaş başlangıç sürelerini teşhis etmek için kullanılabilir.
+.It Fl -api-info
+API meta verilerini msgpack'e serileştirir ve çıkarır.
+.It Fl -embed
+Standart girdi ve standart çıktıyı bir msgpack-rpc kanalı olarak kullanır.
+:help --embed
+.It Fl -headless
+Bir kullanıcı arayüzü başlatmaz.
+--embed ile birlikte verildiğinde, bu, gömme uygulamasının bir kullanıcı arayüzü başlatmayı (hemen) amaçlamadığı anlamına gelir.
+Bir pipe'taki mesajları "kazımak" için de kullanışlıdır.
+:help --headless
+.It Fl -listen Ar address
+RPC sunucusunu bu pipe veya TCP soketi üzerinde başlatır.
+.It Fl h , -help
+Kullanım bilgilerini yazdırır ve çıkar.
+.It Fl v , -version
+Sürüm bilgilerini yazdırır ve çıkar.
+.El
+.Sh ENVIRONMENT
+.Bl -tag -width Fl
+.It Ev NVIM_APPNAME
+Her XDG kullanıcı dizini içinde kullanılan alt dizinlerin adı.
+Varsayılan olarak
+.Cm nvim
+'dir.
+:help $NVIM_APPNAME
+.It Ev NVIM_LOG_FILE
+Düşük seviyeli günlük dosyası, genellikle ~/.local/state/nvim/log konumunda bulunur.
+:help $NVIM_LOG_FILE
+.It Ev VIM
+init.vim gibi kullanıcı dosyalarını bulmak için kullanılır.
+Sistem bağımlıdır.
+:help $VIM
+.It Ev VIMRUNTIME
+Çalışma zamanı dosyalarını (belgeler, sözdizimi vurgulama vb.) bulmak için kullanılır.
+.It Ev XDG_CONFIG_HOME
+Kullanıcı yerel yapılandırma dizininin yolu, bkz.
+.Sx FILES .
+Varsayılan olarak
+.Pa ~/.config
+'dir.
+:help xdg
+.It Ev XDG_STATE_HOME
+.Ev XDG_CONFIG_HOME
+gibi, ancak genellikle kullanıcı tarafından düzenlenmeyen verileri, yani takas, yedekleme ve ShaDa dosyalarını depolamak için kullanılır.
+Varsayılan olarak
+.Pa ~/.local/state
+'dir.
+:help xdg
+.It Ev XDG_DATA_HOME
+.Ev XDG_CONFIG_HOME
+gibi, ancak genellikle kullanıcı tarafından düzenlenmeyen verileri, çalışma zamanı dosyaları gibi şeyleri depolamak için kullanılır.
+Varsayılan olarak
+.Pa ~/.local/share
+'dir.
+:help xdg
+.It Ev VIMINIT
+Başlangıçta yürütülecek Ex komutları.
+.Ic ":help VIMINIT"
+.It Ev SHELL
+.Ic :terminal ,
+.Ic :!
+ve
+.Ic system()
+gibi özellikler tarafından kullanılan varsayılan kabuğu belirleyen 'shell' seçeneğini başlatmak için kullanılır.
+.El
+.Sh FILES
+.Bl -tag -width "~/.config/nvim/init.vim"
+.It Pa ~/.config/nvim/init.vim
+Kullanıcı yerel
+.Nm
+yapılandırma dosyası.
+.It Pa ~/.config/nvim
+Kullanıcı yerel
+.Nm
+yapılandırma dizini.
+Ayrıca bkz.
+.Ev XDG_CONFIG_HOME .
+.It Pa $VIM/sysinit.vim
+Sistem genel
+.Nm
+yapılandırma dosyası.
+.It Pa $VIM
+Sistem genel
+.Nm
+çalışma zamanı dizini.
+.El
+.Sh AUTHORS
+Nvim,
+.An Thiago de Arruda
+tarafından başlatılmıştır.
+Vim'in çoğu
+.An -nosplit
+.An Bram Moolenaar
+tarafından yazılmıştır.
+Vim,
+.An Tim Thompson ,
+.An Tony Andrews
+ve
+.An G.R. (Fred) Walter
+tarafından üzerinde çalışılan Stevie'ye dayanmaktadır.
+.Ic ":help credits"
