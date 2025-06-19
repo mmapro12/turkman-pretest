@@ -4,3 +4,4 @@ ani-cli
 w3m
 turkman
 nvim
+qbittorrent
